@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql1
+    environment:
+      MYSQL_ROOT_PASSWORD: burak1980
+      MYSQL_DATABASE: graduateeducation
+      MYSQL_USER: burak
+      MYSQL_PASSWORD: burak1980
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+    image: ghcr.io/burak101101/web-app-app:latest
+    container_name: spring_app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql1:3306/graduateeducation
+      SPRING_DATASOURCE_USERNAME: burak
+      SPRING_DATASOURCE_PASSWORD: burak1980
+    depends_on:
+      - mysql
+
+volumes:
+  mysql-data:

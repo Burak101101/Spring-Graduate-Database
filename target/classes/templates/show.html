@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&disp
+ lay=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 175vh;
+        }
+        .container {
+            width: 85%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: left;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #dddddd;
+        }
+        .table th {
+            background-color: #007bff;
+            color: white;
+        }
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .table td a{
+            font-family: 'Roboto', sans-serif;
+        }
+
+        button {
+            background-color: #4CAF50; /* Yeşil buton */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form{
+            margin-bottom: 20px;
+        }
+
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="container">
+        <h1>List of Courses</h1>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Credit</th>
+                <th>Lecture Hours</th>
+                <th>Lab Hours</th>
+                <th>Instructor ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Iterate over courses and display each course -->
+            <th:block th:each="course : ${courses}">
+                <tr>
+                    <td th:text="${course.courseCode}"></td>
+                    <td th:text="${course.courseName}"></td>
+                    <td th:text="${course.credit}"></td>
+                    <td th:text="${course.lectureHours}"></td>
+                    <td th:text="${course.labHours}"></td>
+                    <td th:text="${course.instructorId}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+        <div>
+            <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Back</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function cancelForm() {
+        window.location = "[[@{/courses/index}]]";
+    }
+</script>
+</body>
+</html>
